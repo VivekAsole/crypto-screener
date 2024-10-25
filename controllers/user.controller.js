@@ -50,6 +50,7 @@ const loginUser = asyncHandler(async (req, res) => {
             .json({
                 at: accessToken,
                 rt: refreshToken,
+                user: user._id,
             });
     } catch (error) {
         return res.status(500).json({ message: 'Internal server error' });

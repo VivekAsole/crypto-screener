@@ -5,8 +5,8 @@ import cookieParser from "cookie-parser";
 const app = express()
 
 const corsOptions = {
-    origin: "https://crypto-tracker-platform.netlify.app",
-    // origin:"http://localhost:5173",  // Replace with client origin
+    // origin: "https://crypto-tracker-platform.netlify.app",
+    origin:"http://localhost:5173",  // Replace with client origin
     credentials: true, // Allow cookies to be sent with requests
   };
 

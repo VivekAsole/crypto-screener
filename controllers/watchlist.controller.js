@@ -71,7 +71,7 @@ const addPair = asyncHandler( async (req, res) => {
 })
 
 const fetchWatchlist = asyncHandler(async (req, res) => {
-    const { user } = req.cookies
+    const { user } = req.body
 
     if (user === null || user === undefined) {
         res
