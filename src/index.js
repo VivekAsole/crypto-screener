@@ -1,5 +1,3 @@
-// require('dotenv').config({path: './.env'}) // path optional
-
 import dotenv from 'dotenv';
 
 dotenv.config({path: './.env'});

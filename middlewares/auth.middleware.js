@@ -33,7 +33,7 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
             return res.status(401).json({ message: "Token expired" });
         }
         // Handle other errors
-        console.error("JWT verification error:", error);
+        // console.error("JWT verification error:", error)
         return res.status(500).json({ message: "Internal server error" });
     }
 })
@@ -70,7 +70,7 @@ export const verifyCookies = asyncHandler(async (req, res, next) => {
             return res.status(401).json({ message: "Token expired" });
         }
         // Handle other errors
-        console.error("JWT verification error:", error);
+        // console.error("JWT verification error:", error);
         return res.status(500).json({ message: "Internal server error" });
     }
 })

@@ -13,7 +13,7 @@ const generateAccessTokenAndRefreshTokens = async (userId) => {
         return { accessToken, refreshToken }
 
     } catch (error) {
-        console.log("token generation error")
+        return
     }
 }
 
@@ -46,44 +46,14 @@ const loginUser = asyncHandler(async (req, res) => {
             .status(200)
             .cookie("accessToken", accessToken, { ...options, maxAge: 24 * 60 * 60 * 1000 })
             .cookie("refreshToken", refreshToken, { ...options, maxAge: 10 * 24 * 60 * 60 * 1000 })
+            .cookie("user",user._id, { ...options, maxAge: 10 * 24 * 60 * 60 * 1000 })
             .json({
                 at: accessToken,
-                rt: refreshToken
+                rt: refreshToken,
             });
     } catch (error) {
-        console.error(error);
         return res.status(500).json({ message: 'Internal server error' });
     }
-    // const user = await User.findOne({ email })
-
-    // if (!user) {
-    //     console.log('user not exit')
-    // }
-
-    // const isPasswordValid = await user.isPasswordCorrect(password)
-
-    // if (!isPasswordValid) {
-    //     console.log("Pasword invalid")
-    // }
-
-    // const { accessToken, refreshToken } = await generateAccessTokenAndRefreshTokens(user._id)
-
-    // //cookies
-
-    // const options = {
-    //     httpOnly: true,
-    //     secure: true
-    // }
-
-    // return res
-    //     .status(200)
-    //     .cookie("accessToken", accessToken, options)
-    //     .cookie("refreshToken", refreshToken, options)
-    //     .json({
-    //         at: accessToken,
-    //         rt: refreshToken
-    //     })
-
 })
 
 const registerUser = asyncHandler(async (req, res) => {
@@ -115,40 +85,11 @@ const registerUser = asyncHandler(async (req, res) => {
                 user: user // or select specific fields to return
             });
     } catch (error) {
-        console.error("Error registering user:", error);
         return res.status(500).json({
             userCreated: false,
             message: 'Registration failed'
         });
     }
-
-    // const user = await User.create({
-    //     firstName,
-    //     lastName,
-    //     email,
-    //     password
-    // })
-
-    // const existedUser = await User.findOne({ email })
-
-    // if (existedUser) {
-    //     console.log('email existed')
-    // } else {        
-    //     //checking is user created ?
-    //     const createdUser = await User.findById(user._id)
-
-    //     if (!createdUser) {
-    //         console.log("registering fail from our side")
-    //     }
-    // }
-
-    // return res.status(201).json(
-    //     {
-    //         userCreated: true,
-    //         // createdAt: new Date()
-    //     }
-    // )
-
 })
 
 const authentication = asyncHandler(async (req, res) => {

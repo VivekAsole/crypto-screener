@@ -1,11 +1,12 @@
- import express from "express";
+import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
 const app = express()
 
 const corsOptions = {
-    origin: "https://top-pairs.netlify.app", // Replace with your client origin
+    // origin: "https://top-pairs.netlify.app", // Replace with client origin
+    origin:"http://localhost:5173",
     credentials: true, // Allow cookies to be sent with requests
   };
 
